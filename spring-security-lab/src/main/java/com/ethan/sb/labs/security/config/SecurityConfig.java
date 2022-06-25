@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * @author zhenghui
+ * @Author zhenghui
  * @Description Spring Security的配置类
  * @Date 2022/6/25
  */
@@ -23,14 +23,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
             // 允许访问的请求
-            .antMatchers("/", "/home", "/hello").permitAll()
+            .antMatchers("/", "/home", "/hello", "/submit").permitAll()
             .anyRequest()
             .authenticated()
             .and()
             .formLogin()
             .loginProcessingUrl("/test/login")
             .loginPage("/login").permitAll()
-            .and().logout().permitAll();
+            .and().logout().permitAll()
+            .and().csrf().disable();
     }
 
     @Override

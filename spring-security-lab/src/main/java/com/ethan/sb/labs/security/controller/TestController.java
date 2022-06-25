@@ -1,8 +1,12 @@
 package com.ethan.sb.labs.security.controller;
 
+import com.ethan.sb.labs.security.bo.TestBo;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @Author zhenghui
@@ -31,5 +35,11 @@ public class TestController {
     @Secured("ROLE_ADMIN")
     public String admin() {
         return "admin";
+    }
+
+    @PostMapping(value = "submit")
+    @ResponseBody
+    public Integer submit(@RequestBody TestBo testBo) {
+        return testBo.getId();
     }
 }
